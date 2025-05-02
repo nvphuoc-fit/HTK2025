@@ -1,37 +1,77 @@
-// Swap languages
-document.getElementById('swapBtn').addEventListener('click', () => {
-    const source = document.getElementById('sourceLang');
-    const target = document.getElementById('targetLang');
-    const temp = source.value;
-    source.value = target.value;
-    target.value = temp;
+// Hàm reset active menu
+function resetActiveMenu() {
+    document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active'));
+}
+
+// Hàm cập nhật vùng nhập liệu
+function setInputArea(type) {
+    const inputArea = document.getElementById('inputArea');
+    inputArea.innerHTML = ''; // Xóa nội dung cũ
+
+    if (type === 'text') {
+        inputArea.innerHTML = `<textarea placeholder="Nhập văn bản..."></textarea>`;
+    } else if (type === 'image') {
+        inputArea.innerHTML = `
+            <input type="file" id="imageInput" accept="image/*">
+            <img id="imagePreview" src="" alt="Xem trước ảnh">
+        `;
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.getElementById('imagePreview').src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    } else if (type === 'document') {
+        inputArea.innerHTML = `<input type="file" id="documentInput" accept=".pdf,.doc,.docx,.txt">`;
+    } else if (type === 'website') {
+        inputArea.innerHTML = `<input type="text" id="websiteInput" placeholder="Nhập link trang web...">`;
+    }
+}
+
+// Xử lý nút menu
+document.getElementById('btnText').addEventListener('click', function() {
+    resetActiveMenu();
+    this.classList.add('active');
+    setInputArea('text');
+});
+document.getElementById('btnImage').addEventListener('click', function() {
+    resetActiveMenu();
+    this.classList.add('active');
+    setInputArea('image');
+});
+document.getElementById('btnDocument').addEventListener('click', function() {
+    resetActiveMenu();
+    this.classList.add('active');
+    setInputArea('document');
+});
+document.getElementById('btnWebsite').addEventListener('click', function() {
+    resetActiveMenu();
+    this.classList.add('active');
+    setInputArea('website');
 });
 
-// Clear input and output
-document.getElementById('clearBtn').addEventListener('click', () => {
-    document.getElementById('inputText').value = '';
-    document.getElementById('outputText').value = '';
+// Xoá nội dung input hiện tại
+document.getElementById('clearBtn').addEventListener('click', function() {
+    const inputArea = document.getElementById('inputArea');
+    const currentInput = inputArea.querySelector('textarea, input');
+    if (currentInput) currentInput.value = '';
+
+    const imgPreview = document.getElementById('imagePreview');
+    if (imgPreview) imgPreview.src = '';
 });
 
-// Upload file content to input
-document.getElementById('fileUpload').addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+// Hoán đổi ngôn ngữ
+document.getElementById('swapBtn').addEventListener('click', function() {
+    const leftLang = document.querySelector('.left-panel .lang-select .active');
+    const rightLang = document.querySelector('.right-panel .lang-select .active');
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        document.getElementById('inputText').value = e.target.result;
-    };
-    reader.readAsText(file);
-});
+    let leftText = leftLang.textContent;
+    let rightText = rightLang.textContent;
 
-// Fake translation (bạn sẽ nối API/model backend ở đây)
-document.getElementById('translateBtn').addEventListener('click', () => {
-    const inputText = document.getElementById('inputText').value;
-    const sourceLang = document.getElementById('sourceLang').value;
-    const targetLang = document.getElementById('targetLang').value;
-
-    // Demo: Đảo ngược chuỗi để giả lập kết quả dịch (sau này thay bằng model thực tế)
-    const translated = inputText.split('').reverse().join('');
-    document.getElementById('outputText').value = `[${sourceLang} → ${targetLang}]:\n${translated}`;
+    leftLang.textContent = rightText;
+    rightLang.textContent = leftText;
 });

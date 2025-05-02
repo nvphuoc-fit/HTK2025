@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <title>Ứng dụng Dịch Văn Bản</title>
+    <title>HTK Dịch</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Ứng dụng Dịch Văn Bản</h1>
-    </header>
 
-    <main>
-        <div class="translator-container">
-            <div class="panel">
-                <h3>Văn bản gốc</h3>
-                <textarea id="inputText" placeholder="Nhập văn bản..."></textarea>
-            </div>
-
-            <div class="controls">
-                <button id="swapBtn">⇄</button>
-                <select id="sourceLang">
-                    <option value="vi">Tiếng Việt</option>
-                    <option value="en">English</option>
-                </select>
-                <select id="targetLang">
-                    <option value="en">English</option>
-                    <option value="vi">Tiếng Việt</option>
-                </select>
-            </div>
-
-            <div class="panel">
-                <h3>Văn bản dịch</h3>
-                <textarea id="outputText" placeholder="Kết quả dịch..." readonly></textarea>
-            </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">HTK <span>Dịch</span></div>
+        <!-- Menu -->
+        <div class="menu">
+            <button id="btnText" class="active">Văn bản</button>
+            <button id="btnImage">Hình ảnh</button>
+            <button id="btnDocument">Tài liệu</button>
+            <button id="btnWebsite">Trang web</button>
         </div>
 
-        <div class="action-buttons">
-            <button id="translateBtn">Dịch</button>
-            <button id="clearBtn">Xóa</button>
-            <input type="file" id="fileUpload" accept=".txt">
-        </div>
-    </main>
+    </nav>
 
-    <script src="js/app.js"></script>
+    <!-- Translation Panel -->
+    <section class="translator">
+        <div class="panel left-panel">
+            <div class="lang-select">
+                <button>Phát hiện</button>
+                <button class="active">Anh</button>
+                <button>Việt</button>
+                <button>Pháp</button>
+            </div>
+            <div class="input-area" id="inputArea">
+                <!-- Mặc định là textarea (văn bản) -->
+                <textarea placeholder="Nhập văn bản..."></textarea>
+            </div>
+
+            <div class="actions">
+                <button id="clearBtn">Xóa</button>
+                <input type="file" id="fileUpload">
+            </div>
+
+        </div>
+
+        <div class="swap-btn">
+            <button id="swapBtn">⇄</button>
+        </div>
+
+        <div class="panel right-panel">
+            <div class="lang-select">
+                <button class="active">Việt</button>
+                <button>Anh</button>
+                <button>Trung</button>
+            </div>
+            <div class="output-box" id="outputBox">Bản dịch</div>
+        </div>
+    </section>
+
+    <!-- History & Saved -->
+    <section class="history">
+        <button>Các bản dịch đã thực hiện</button>
+        <button>Đã lưu</button>
+    </section>
+
+    <script src="js/script.js"></script>
 </body>
+
 </html>
