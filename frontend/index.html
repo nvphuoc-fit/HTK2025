@@ -2,58 +2,46 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Ứng dụng Phân loại văn bản (Transformer)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ứng dụng Dịch Văn Bản</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-light">
+<body>
+    <header>
+        <h1>Ứng dụng Dịch Văn Bản</h1>
+    </header>
 
-<nav class="navbar navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1" id="app-title">Ứng dụng Phân loại văn bản (Transformer)</span>
-  </div>
-</nav>
+    <main>
+        <div class="translator-container">
+            <div class="panel">
+                <h3>Văn bản gốc</h3>
+                <textarea id="inputText" placeholder="Nhập văn bản..."></textarea>
+            </div>
 
-<div class="container">
-  <div class="d-flex justify-content-end mb-2">
-    <button class="btn btn-outline-secondary btn-sm me-2" id="lang-btn">English</button>
-  </div>
+            <div class="controls">
+                <button id="swapBtn">⇄</button>
+                <select id="sourceLang">
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="en">English</option>
+                </select>
+                <select id="targetLang">
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div>
 
-  <div class="card mb-4">
-    <div class="card-header" id="input-header">
-      Nhập văn bản cần phân loại
-    </div>
-    <div class="card-body">
-      <form id="predict-form">
-        <div class="mb-3">
-          <textarea class="form-control" id="input-text" rows="5" placeholder="Nhập văn bản tại đây..."></textarea>
+            <div class="panel">
+                <h3>Văn bản dịch</h3>
+                <textarea id="outputText" placeholder="Kết quả dịch..." readonly></textarea>
+            </div>
         </div>
 
-        <div class="mb-3">
-          <label for="file-upload" class="form-label" id="file-label">Hoặc tải file văn bản (.txt)</label>
-          <input class="form-control" type="file" id="file-upload" accept=".txt">
+        <div class="action-buttons">
+            <button id="translateBtn">Dịch</button>
+            <button id="clearBtn">Xóa</button>
+            <input type="file" id="fileUpload" accept=".txt">
         </div>
+    </main>
 
-        <button type="submit" class="btn btn-primary me-2" id="predict-btn">Dự đoán</button>
-        <button type="button" class="btn btn-secondary" id="clear-btn">Xóa</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="result-header">
-      Kết quả dự đoán
-    </div>
-    <div class="card-body">
-      <p id="result" class="fw-bold text-success">Chưa có kết quả.</p>
-    </div>
-  </div>
-</div>
-
-<footer class="text-center mt-5 mb-3 text-muted">
-  &copy; 2025 HCMUS
-</footer>
-
-<script src="js/app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
