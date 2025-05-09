@@ -12,35 +12,25 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">HTK <span>Dịch</span></div>
-        <!-- Menu -->
-        <div class="menu">
-            <button id="btnText" class="active">Văn bản</button>
-            <button id="btnImage">Hình ảnh</button>
-            <button id="btnDocument">Tài liệu</button>
-            <button id="btnWebsite">Trang web</button>
-        </div>
-
     </nav>
 
     <!-- Translation Panel -->
     <section class="translator">
         <div class="panel left-panel">
             <div class="lang-select">
-                <button>Phát hiện</button>
                 <button class="active">Anh</button>
                 <button>Việt</button>
-                <button>Pháp</button>
             </div>
             <div class="input-area" id="inputArea">
                 <!-- Mặc định là textarea (văn bản) -->
                 <textarea placeholder="Nhập văn bản..."></textarea>
             </div>
-
             <div class="actions">
+                <button id="translateBtn">Dịch</button>
                 <button id="clearBtn">Xóa</button>
                 <input type="file" id="fileUpload">
             </div>
-
+            
         </div>
 
         <div class="swap-btn">
@@ -51,7 +41,6 @@
             <div class="lang-select">
                 <button class="active">Việt</button>
                 <button>Anh</button>
-                <button>Trung</button>
             </div>
             <div class="output-box" id="outputBox">Bản dịch</div>
         </div>
