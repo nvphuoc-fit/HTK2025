@@ -41,7 +41,6 @@ function TranslatorForm({ setResult }) {
           onChange={(e) => setDirection(e.target.value)}
         >
           <option value="en-vi">English to Vietnamese</option>
-          <option value="vi-en">Vietnamese to English</option>
         </select>
       </div>
       <button type="submit" className="btn btn-primary w-100">
